@@ -1,6 +1,12 @@
 # MMM-DropboxWallpaper
 Module for `MagicMirror` which can show images from `Dropbox`
 
+## New Updates
+**`[2.1.0_rdr_a001] - 2020/06/18`**
+-added PHTO_START and PHOTO_STOP to enable picture on the wall 
+-added suspend and resume with dark background
+-module needs MMM-NotificationTrigger and MMM-Page-Selector
+
 
 ## New Updates
 **`[2.1.0] - 2020/03/24`**
