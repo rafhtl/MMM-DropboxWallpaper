@@ -26,7 +26,7 @@ Module.register("MMM-DropboxWallpaper",{
   },
 
   start: function() {
-      this.toggle_play_stop = "STOP";
+      this.toggle_play_stop = "PLAY";
 
   },
 

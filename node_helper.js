@@ -56,6 +56,7 @@ module.exports = NodeHelper.create({
     this.config = {}
     this.images = []
     this.index = 0
+    this.timer = null
   },
 
   socketNotificationReceived: function (noti, payload) {
@@ -64,10 +65,10 @@ module.exports = NodeHelper.create({
         this.initializeAfterLoading(payload)
         break;
       case 'PHOTO_STOP':
-        clearInterval(timer);
+        clearInterval(this.timer);
         break;
       case 'PHOTO_START':
-        clearInterval(timer);
+        clearInterval(this.timer);
         this.work()
         break;
     }
@@ -161,8 +162,8 @@ module.exports = NodeHelper.create({
   },
 
   work: function() {
-    clearTimeout(timer)
-    var timer = null
+    clearTimeout(this.timer)
+    this.timer = null
     if (this.index >= this.images.length) {
       console.log("[DBXWLP] Cycle finished")
       this.index = 0
@@ -173,7 +174,7 @@ module.exports = NodeHelper.create({
 
       })
       this.index++
-      timer = setTimeout(()=>{
+      this.timer = setTimeout(()=>{
         this.work()
       }, this.config.refreshInterval)
     }
