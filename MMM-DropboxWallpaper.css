@@ -32,6 +32,39 @@
   opacity:0;
   transition: opacity 1s ease 1s;
 }
+
+
+.DBXWLP.touchme {
+  position:fixed;
+  border:0px solid #353b48;
+  top: 50px;
+  bottom:150px;
+  right:0px;
+  left:0;
+  padding:10px;
+  border-radius:0px;
+  background-color:transparent;
+  color:rgba(255,255,255, 0.5);
+  font-size:16px;
+  line-height:110%;
+  z-index: 10000003;
+}
+.DBXWLP.touchmehome {
+  position:fixed;
+  border:0px solid #ffffff;
+  height: 100px;
+  
+  bottom:2px;
+  right:0px;
+  left:0px;
+  
+  border-radius:0px;
+  background-color:transparent;
+  color:rgba(255,255,255, 0.5);
+  font-size:16px;
+ 
+  z-index: 10000003;
+}
 /*
 #DBXWLP.tr_1 {
 

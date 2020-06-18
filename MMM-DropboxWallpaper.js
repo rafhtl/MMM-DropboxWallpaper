@@ -18,6 +18,7 @@ Module.register("MMM-DropboxWallpaper",{
     height: "100%",
     mode: "cover", // 'cover', 'contain', 'hybrid' or any other values for CSS `background-size`
     dateTimeFormat: "HH:mm MMM Do, YYYY", // See. moment.js .format()
+    thepagename: 'images01', // what pahe is the module active and needs to activate functions
   },
 
   getStyles: function() {
@@ -25,6 +26,7 @@ Module.register("MMM-DropboxWallpaper",{
   },
 
   start: function() {
+      this.toggle_play_stop = "STOP";
 
   },
 
@@ -47,11 +49,32 @@ Module.register("MMM-DropboxWallpaper",{
 
     var location = document.createElement("div")
     location.id = "DBXWLP_LOCATION"
+    
+    
+    var touchme = document.createElement("div");
+    var text = document.createElement("span");
+    touchme.className = "DBXWLP touchme";
+    //text.innerHTML = "PLAY/STOP";
+    text.innerHTML = "&nbsp;";
+    text.id = "touchme_id";
+    touchme.onclick = () => this.itemClicked("1");    
+    touchme.appendChild(text);
 
     info.appendChild(date)
     info.appendChild(location)
     wrapper.appendChild(bg)
     wrapper.appendChild(info)
+    wrapper.appendChild(touchme)
+    
+    var touchmehome = document.createElement("div");
+    var texttouchmehome = document.createElement("span");
+    touchmehome.className = "DBXWLP touchmehome";
+    texttouchmehome.innerHTML = "&nbsp;";
+    texttouchmehome.id = "touchme_id";
+    touchmehome.onclick = () => this.touchmehomeClicked("1");    
+    touchmehome.appendChild(texttouchmehome);
+    wrapper.appendChild(touchmehome)
+    
     return wrapper
   },
 
@@ -60,7 +83,27 @@ Module.register("MMM-DropboxWallpaper",{
       case "DOM_OBJECTS_CREATED":
         this.sendSocketNotification('INIT_CONFIG', this.config)
         break
+        
+      case "TV":
+            if(payload.command=="stop"){
+                this.toggle_play_stop = "STOP"
+                this.sendSocketNotification('PHOTO_STOP',item);
+                this.sendNotification("SHOW_ALERT", {title: "Please wait", message: "PHOTO STOP", timer: 1200}); 
+                return
+            }
+            if(payload.command=="play"){
+                this.toggle_play_stop = "PLAY"
+                this.sendSocketNotification('PHOTO_START',item);
+                this.sendNotification("SHOW_ALERT", {title: "Please wait", message: "PHOTO START", timer: 1200});
+                
+                return
+            }
+        break    
     }
+    
+    
+    
+    
   },
 
   socketNotificationReceived: function(noti, payload) {
@@ -70,6 +113,23 @@ Module.register("MMM-DropboxWallpaper",{
         break;
     }
   },
+  
+    itemClicked: function (item) {
+      if (this.toggle_play_stop === "STOP") {
+        this.toggle_play_stop = "START"
+        this.sendSocketNotification('PHOTO_START',item);
+        this.sendNotification("SHOW_ALERT", {title: "Please wait", message: "PHOTO START", timer: 1200});
+      }else 
+      {    
+        this.toggle_play_stop = "STOP"
+        this.sendSocketNotification('PHOTO_STOP',item);
+        this.sendNotification("SHOW_ALERT", {title: "Please wait", message: "PHOTO STOP", timer: 1200});  
+      }
+    },
+    touchmehomeClicked: function (item) {
+        
+        this.sendNotification("PAGE_SELECT", "main");
+    },
 
   updateView: function(photo) {
     const tr = [
@@ -129,6 +189,12 @@ Module.register("MMM-DropboxWallpaper",{
       date.innerHTML = (typeof photo.time !== "undefined") ? photo.time : ""
       location.innerHTML = (typeof photo.locationText !== "undefined") ? photo.locationText : ""
     }, 2000)
+  },
+  suspend: function () {
+    this.sendNotification("BGnormal");
+  },
+  resume: function () {
+    this.sendNotification("BGhide");
   },
 
 })

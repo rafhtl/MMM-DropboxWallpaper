@@ -63,6 +63,13 @@ module.exports = NodeHelper.create({
       case 'INIT_CONFIG':
         this.initializeAfterLoading(payload)
         break;
+      case 'PHOTO_STOP':
+        clearInterval(timer);
+        break;
+      case 'PHOTO_START':
+        clearInterval(timer);
+        this.work()
+        break;
     }
   },
 
