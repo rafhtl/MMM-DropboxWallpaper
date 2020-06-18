@@ -1,5 +1,5 @@
 # MMM-DropboxWallpaper
-Module for `MagicMirror` which can show images from `Dropbox`
+Module for `MagicMirror` which can show images from `Dropbox` credit to eouia for te great work
 
 ## New Updates
 **`[2.1.0_rdr_a001] - 2020/06/18`**
@@ -22,7 +22,7 @@ Module for `MagicMirror` which can show images from `Dropbox`
 
 
 ## Screenshot
-![](https://github.com/eouia/MMM-DropboxWallpaper/blob/master/sc.jpg?raw=true)
+![](https://github.com/rafhtl/MMM-DropboxWallpaper/blob/master/sc.jpg?raw=true)
 
 ## Features and Information
 This module can download images (one-by-one) from Dropbox and use it as fullscreen wallpaper.
@@ -40,7 +40,7 @@ This module has a very shallow niche purpose, especially for my wife. :P
 ## Installation
 ```shell
 cd ~/MagicMirror/modules
-git clone https://github.com/eouia/MMM-DropboxWallpaper.git
+git clone https://github.com/rafhtl/MMM-DropboxWallpaper.git
 cd MMM-DropboxWallpaper
 npm install
 ```
@@ -106,7 +106,7 @@ Or you can use this;
 ## UPDATES HISTORY
 ## v2.0.0 Notice
 This module is upgraded to v2.0.0. (Since Aug 2nd, 2018).
-You can find the previous version(v1.0.0) in github branch [`v1.0.0`](https://github.com/eouia/MMM-DropboxWallpaper/tree/v1.0.0)
+You can find the previous version(v1.0.0) in github branch [`v1.0.0`](https://github.com/rafhtl/MMM-DropboxWallpaper/tree/v1.0.0)
 For updating to v2.0.0. You should;
 ```shell
 cd ~/MagicMirror/modules/MMM-DropboxWallpaper
