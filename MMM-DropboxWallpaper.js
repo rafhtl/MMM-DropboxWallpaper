@@ -84,7 +84,7 @@ Module.register("MMM-DropboxWallpaper",{
         this.sendSocketNotification('INIT_CONFIG', this.config)
         break
         
-      case "TV":
+      case "PHOTO_DROPBOX":
             if(payload.command=="stop"){
                 this.toggle_play_stop = "STOP"
                 this.sendSocketNotification('PHOTO_STOP',item);
