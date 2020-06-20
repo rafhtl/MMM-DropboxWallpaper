@@ -80,12 +80,12 @@ module.exports = NodeHelper.create({
 
     }
     this.dbx = new Dropbox({accessToken: this.config.dropboxAccessToken, fetch: fetch})
-    console.log('[DBXWLP] Configuration is initialized.')
+    //console.log('[DBXWLP] Configuration is initialized.')
     this.scan(this.config.scanDirectory)
   },
 
   scan: function(directory, continueArg={}) {
-    console.log("[DBXWLP] Starting photo scanning.")
+    //console.log("[DBXWLP] Starting photo scanning.")
     var extCount = this.config.search.length;
     var tempItems = []
     var maxResult = 10
@@ -104,7 +104,7 @@ module.exports = NodeHelper.create({
         for (var j in result.matches) {
           var item = result.matches[j]
           count--
-          console.log("[DBXWLP] Scanning.", totalCount, count)
+          //console.log("[DBXWLP] Scanning.", totalCount, count)
           if (item.metadata['.tag'] !== 'file') {
             totalCount--
             continue
@@ -156,7 +156,7 @@ module.exports = NodeHelper.create({
   },
 
   scanned: function() {
-    console.log("[DBXWLP] All photos are found.:", this.images.length)
+    //console.log("[DBXWLP] All photos are found.:", this.images.length)
     this.images.sort(mySort[this.config.sort])
     this.work()
   },
@@ -165,7 +165,7 @@ module.exports = NodeHelper.create({
     clearTimeout(this.timer)
     this.timer = null
     if (this.index >= this.images.length) {
-      console.log("[DBXWLP] Cycle finished")
+      //console.log("[DBXWLP] Cycle finished")
       this.index = 0
       this.scan()
     } else {
@@ -297,7 +297,7 @@ module.exports = NodeHelper.create({
 
       this.dbx.filesDownload({"path":photo.path}).then((data) => {
         fs.writeFileSync(filePath, data.fileBinary, "binary")
-        console.log("[DBXWLP]", photo.name, "is downloaded.")
+        //console.log("[DBXWLP]", photo.name, "is downloaded.")
         resolve(exifProc(photo, getGeo))
       }).catch((err)=>{
         resolve(false)
