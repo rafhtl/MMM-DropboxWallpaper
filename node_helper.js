@@ -266,7 +266,7 @@ module.exports = NodeHelper.create({
           try {
             new ExifImage({ image : filePath }, (error, exifData) => {
               if (error) {
-                console.log("Warning(Ignorable):", error.toString())
+                //console.log("Warning(Ignorable):", error.toString())
               }
               if (!error && typeof exifData !== "undefined" && exifData.hasOwnProperty("exif")) {
                 if (exifData.exif && exifData.exif.CreateDate) {
